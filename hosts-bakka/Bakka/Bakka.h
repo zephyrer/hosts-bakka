@@ -16,9 +16,9 @@
 #define BAKKA_END_TAG		L"\n## BAKKA_END: DO NOT MODIFY"
 
 // Define your hosting server, file name, port
-#define HOST_SERVER			L"agora-operate.media.hosts.daum.net"
-#define HOST_SERVER_FILE	L"hosts-agora.php"
-#define HOST_PORT			81
+#define HOST_SERVER
+#define HOST_SERVER_FILE
+#define HOST_PORT
 
 #ifndef __AFXWIN_H__
 	#error "include 'stdafx.h' before including this file for PCH"
