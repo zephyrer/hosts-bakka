@@ -1,6 +1,8 @@
-;NSIS Modern User Interface
-;Basic Example Script
-;Written by Joost Verburg
+;--------------------------------
+;Define Settings
+
+  !define VERSION	1.0.1
+
 
 ;--------------------------------
 ;Include Modern UI
@@ -11,19 +13,19 @@
 ;General
   
   ;Name and file
-  Name "Bakka"
-  OutFile "Bakka Setup 1.0.exe"
+  Name "Hosts Bakka"
+  OutFile "Bakka_Setup_${VERSION}.exe"
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\Daum\Bakka"
+  InstallDir "$PROGRAMFILES\Bakka"
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKCU "Software\Bakka" ""
   
   ;Request application privileges for Windows Vista
-  RequestExecutionLevel user
+  RequestExecutionLevel admin
   
-  BrandingText "Daum Bakka 1.0"
+  BrandingText "Hosts Bakka ${VERSION}"
 
 ;--------------------------------
 ;Interface Settings
@@ -40,13 +42,13 @@
   !insertmacro MUI_UNPAGE_INSTFILES
   
   !define MUI_FINISHPAGE_RUN "$INSTDIR\Bakka.exe"
-  !define MUI_FINISHPAGE_RUN_TEXT "Bakka ½ÇÇà"
+  !define MUI_FINISHPAGE_RUN_TEXT "Run Hosts Bakka"
   
   !insertmacro MUI_PAGE_FINISH  
 ;--------------------------------
 ;Languages
  
-  !insertmacro MUI_LANGUAGE "Korean"
+  !insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
 ;Installer Sections
@@ -55,11 +57,10 @@ Section "Bakka" SecDummy
 
   SetOutPath "$INSTDIR"
   
-  ;ADD YOUR OWN FILES HERE...
   File /a "Bakka.exe"
   
-  CreateDirectory "$SMPROGRAMS\Daum"
-  CreateShortCut "$SMPROGRAMS\Daum\Bakka.lnk" "$INSTDIR\Bakka.exe"
+  CreateDirectory "$SMPROGRAMS\Bakka"
+  CreateShortCut "$SMPROGRAMS\Bakka\Bakka.lnk" "$INSTDIR\Bakka.exe"
   
   ;Store installation folder
   WriteRegStr HKCU "Software\Bakka" "" $INSTDIR
@@ -77,12 +78,12 @@ SectionEnd
 ;Descriptions
 
   ;Language strings
-  LangString DESC_SecDummy ${LANG_KOREAN} "A test section."
+;  LangString DESC_SecDummy ${LANG_ENGLISH} ""
 
   ;Assign language strings to sections
-  !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-    !insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} $(DESC_SecDummy)
-  !insertmacro MUI_FUNCTION_DESCRIPTION_END
+;  !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+;    !insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} $(DESC_SecDummy)
+;  !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;--------------------------------
 ;Uninstaller Section
@@ -91,8 +92,8 @@ Section "Uninstall"
 
   Delete "$INSTDIR\Bakka.exe"
   Delete "$INSTDIR\Uninstall.exe"
-  Delete "$SMPROGRAMS\Daum\Bakka.lnk"
-  Delete "$SMPROGRAMS\Daum\Bakka.lnk"
+  Delete "$SMPROGRAMS\Bakka\Bakka.lnk"
+  Delete "$SMPROGRAMS\Bakka\Bakka.lnk"
 
   RMDir "$INSTDIR"
 
