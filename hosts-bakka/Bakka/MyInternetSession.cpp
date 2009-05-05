@@ -196,7 +196,7 @@ DWORD CMyInternetSession::GetAndSetHosts(LPCTSTR lpstrServer, int nPort, CString
 	CMyInternetSession Session(NULL);
 
 	//Set any CInternetSession options we  may need
-	int ntimeOut = 30;
+	int ntimeOut = 3;
 	Session.SetOption(INTERNET_OPTION_CONNECT_TIMEOUT,1000* ntimeOut);
 	Session.SetOption(INTERNET_OPTION_CONNECT_BACKOFF,1000);
 	Session.SetOption(INTERNET_OPTION_CONNECT_RETRIES,1);
@@ -320,7 +320,7 @@ DWORD CMyInternetSession::GetAndSetHosts(LPCTSTR lpstrServer, int nPort, CString
 	catch (CInternetException* pEx) 
 	{
 		// catch any exceptions from WinINet      
-		ShowStatus(L"ERROR: Can't fetch hosts from server, lost from internet?");
+		ShowStatus(L"ERROR: Can't fetch hosts from server");
 
 		pEx->Delete();
 		if(pFile)
