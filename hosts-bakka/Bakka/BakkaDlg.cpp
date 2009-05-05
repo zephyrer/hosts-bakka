@@ -103,7 +103,7 @@ BOOL CBakkaDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	CProgressCtrl * m_ctlProgress = (CProgressCtrl*)GetDlgItem(IDC_PROGRESS1);
 	m_ctlProgress->SetRange(0, 100);
-	m_ctlProgress->SetStep(10);
+	m_ctlProgress->SetStep(5);
 
 	// Get System32 Directory
 	CString path;
