@@ -96,6 +96,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="verbuild VersionNo.h *.*.*.+ -d2009 -xFp -b1.0.0.0 -e10.30.9999.100 -s -u"
 			/>
 		</Configuration>
 		<Configuration
@@ -246,6 +247,10 @@
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\VersionNo.h"
 				>
 			</File>
 		</Filter>
