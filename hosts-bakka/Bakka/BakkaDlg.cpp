@@ -6,6 +6,7 @@
 #include "Bakka.h"
 #include "BakkaDlg.h"
 #include "MyInternetSession.h"
+#include "SystemTray.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -13,6 +14,8 @@
 
 CString g_strHostFile;
 CString g_strHostBackupFile;
+
+CSystemTray m_TrayIcon;
 
 // CAboutDlg dialog used for App About
 
