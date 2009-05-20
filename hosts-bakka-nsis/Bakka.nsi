@@ -1,7 +1,7 @@
 ;--------------------------------
 ;Define Settings
 
-  !define VERSION	1.2
+  !define VERSION	1.2.1
 
 
 ;--------------------------------
