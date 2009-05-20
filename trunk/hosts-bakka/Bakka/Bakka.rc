@@ -96,7 +96,7 @@ BEGIN
     EDITTEXT        IDC_EDIT1,7,7,212,148,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
     PUSHBUTTON      "디플로이(베타, 평화)",IDC_BUTTON2,228,48,85,21
     PUSHBUTTON      "실 서비스(최소 설정)",IDC_BUTTON3,228,76,85,19
-    LTEXT           "알림: 설정 적용 후에는 브라우저를 재 시작 해주세요",IDC_STATIC,7,185,186,8
+    LTEXT           "알림: 설정 적용 후에는 브라우저를 재시작 해주세요",IDC_STATIC,7,185,184,8
 END
 
 

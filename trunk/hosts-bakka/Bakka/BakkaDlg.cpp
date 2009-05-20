@@ -310,10 +310,7 @@ void CBakkaDlg::OnBnClickedOk()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		CString f;
-		f = HOST_SERVER_FILE;
-		f += "?service=agora&type=test";
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, f, &hosts);
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE1, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
@@ -329,7 +326,7 @@ void CBakkaDlg::OnBnClickedOk()
 // When you click "DEPLOY"
 void CBakkaDlg::OnBnClickedButton2()
 {
-	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	GetDlgItem(IDC_BUTTON2)->EnableWindow(FALSE);
 	InitEditCtrlAndProgress();
 
 	DWORD Status;
@@ -339,10 +336,7 @@ void CBakkaDlg::OnBnClickedButton2()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		CString f;
-		f = HOST_SERVER_FILE;
-		f += "?service=agora&type=deploy";
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, f, &hosts);
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE2, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
@@ -351,13 +345,13 @@ void CBakkaDlg::OnBnClickedButton2()
 		}
 	}
 
-	GetDlgItem(IDOK)->EnableWindow(TRUE);
+	GetDlgItem(IDC_BUTTON2)->EnableWindow(TRUE);
 }
 
 // When you click "REAL SERVICES"
 void CBakkaDlg::OnBnClickedButton3()
 {
-	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
 	InitEditCtrlAndProgress();
 
 	DWORD Status;
@@ -367,10 +361,7 @@ void CBakkaDlg::OnBnClickedButton3()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		CString f;
-		f = HOST_SERVER_FILE;
-		f += "?service=agora&type=real";
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, f, &hosts);
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE3, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
@@ -379,7 +370,7 @@ void CBakkaDlg::OnBnClickedButton3()
 		}
 	}
 
-	GetDlgItem(IDOK)->EnableWindow(TRUE);
+	GetDlgItem(IDC_BUTTON3)->EnableWindow(TRUE);
 }
 
 // When you click "WON BOK"
