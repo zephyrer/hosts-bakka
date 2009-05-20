@@ -68,6 +68,8 @@ BEGIN_MESSAGE_MAP(CBakkaDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &CBakkaDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CBakkaDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CBakkaDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &CBakkaDlg::OnBnClickedButton3)
 END_MESSAGE_MAP()
 
 
@@ -238,50 +240,6 @@ BOOL CBakkaDlg::ReadHostsAndRename(CStringArray* hosts) {
 	return TRUE;
 }
 
-// When you click "Bakka!"
-void CBakkaDlg::OnBnClickedOk()
-{
-	GetDlgItem(IDOK)->EnableWindow(FALSE);
-	InitEditCtrlAndProgress();
-
-	DWORD Status;
-	CStringArray hosts;
-
-	if (ReadHostsAndRename(&hosts)) {
-		StepIt();
-		CMyInternetSession *Session = NULL;
-		Session = new CMyInternetSession(NULL);
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_SERVER_FILE, &hosts);
-
-		if (Status == HTTP_STATUS_OK) {
-			DummyAndDone(1);
-		} else {
-			RestoreHosts(&hosts);
-		}
-	}
-
-	GetDlgItem(IDOK)->EnableWindow(TRUE);
-}
-
-// When you click "Restore"
-void CBakkaDlg::OnBnClickedButton1()
-{
-	GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
-	InitEditCtrlAndProgress();
-
-	ShowStatus(L"Restoring Windows hosts to factory settings");
-	
-	CStringArray hosts;
-	if (ReadHostsAndRename(&hosts)) {
-		StepIt();
-		RestoreHosts(&hosts);
-		StepIt();
-		DummyAndDone(5);
-	}
-
-	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
-}
-
 void CBakkaDlg::ShowEditBox(LPCTSTR str) {
 	CEdit * ce;
 	ce = (CEdit*) GetDlgItem(IDC_EDIT1);
@@ -337,4 +295,108 @@ void CBakkaDlg::RestoreHosts(CStringArray* hosts) {
 				f.WriteString(hosts->GetAt(j));
 			}
 		}
+}
+
+// When you click "TEST"
+void CBakkaDlg::OnBnClickedOk()
+{
+	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	InitEditCtrlAndProgress();
+
+	DWORD Status;
+	CStringArray hosts;
+
+	if (ReadHostsAndRename(&hosts)) {
+		StepIt();
+		CMyInternetSession *Session = NULL;
+		Session = new CMyInternetSession(NULL);
+		CString f;
+		f = HOST_SERVER_FILE;
+		f += "?service=agora&type=test";
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, f, &hosts);
+
+		if (Status == HTTP_STATUS_OK) {
+			DummyAndDone(1);
+		} else {
+			RestoreHosts(&hosts);
+		}
+	}
+
+	GetDlgItem(IDOK)->EnableWindow(TRUE);
+}
+
+
+// When you click "DEPLOY"
+void CBakkaDlg::OnBnClickedButton2()
+{
+	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	InitEditCtrlAndProgress();
+
+	DWORD Status;
+	CStringArray hosts;
+
+	if (ReadHostsAndRename(&hosts)) {
+		StepIt();
+		CMyInternetSession *Session = NULL;
+		Session = new CMyInternetSession(NULL);
+		CString f;
+		f = HOST_SERVER_FILE;
+		f += "?service=agora&type=deploy";
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, f, &hosts);
+
+		if (Status == HTTP_STATUS_OK) {
+			DummyAndDone(1);
+		} else {
+			RestoreHosts(&hosts);
+		}
+	}
+
+	GetDlgItem(IDOK)->EnableWindow(TRUE);
+}
+
+// When you click "REAL SERVICES"
+void CBakkaDlg::OnBnClickedButton3()
+{
+	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	InitEditCtrlAndProgress();
+
+	DWORD Status;
+	CStringArray hosts;
+
+	if (ReadHostsAndRename(&hosts)) {
+		StepIt();
+		CMyInternetSession *Session = NULL;
+		Session = new CMyInternetSession(NULL);
+		CString f;
+		f = HOST_SERVER_FILE;
+		f += "?service=agora&type=real";
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, f, &hosts);
+
+		if (Status == HTTP_STATUS_OK) {
+			DummyAndDone(1);
+		} else {
+			RestoreHosts(&hosts);
+		}
+	}
+
+	GetDlgItem(IDOK)->EnableWindow(TRUE);
+}
+
+// When you click "WON BOK"
+void CBakkaDlg::OnBnClickedButton1()
+{
+	GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
+	InitEditCtrlAndProgress();
+
+	ShowStatus(L"Restoring Windows hosts to factory settings");
+	
+	CStringArray hosts;
+	if (ReadHostsAndRename(&hosts)) {
+		StepIt();
+		RestoreHosts(&hosts);
+		StepIt();
+		DummyAndDone(5);
+	}
+
+	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
 }
