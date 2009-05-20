@@ -15,10 +15,12 @@
 #define BAKKA_START_TAG		L"## BAKKA_START: DO NOT MODIFY\n"
 #define BAKKA_END_TAG		L"\n## BAKKA_END: DO NOT MODIFY"
 
-// Define your hosting server, file name, port
-#define HOST_SERVER
-#define HOST_SERVER_FILE
-#define HOST_PORT
+// Define your hosting server, files and port
+#define HOST_SERVER			L""
+#define HOST_FILE1			L""
+#define HOST_FILE2			L""
+#define HOST_FILE3			L""
+#define HOST_PORT			81
 
 #ifndef __AFXWIN_H__
 	#error "include 'stdafx.h' before including this file for PCH"
