@@ -7,6 +7,7 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_BAKKA_DIALOG                102
 #define IDR_MAINFRAME                   128
+#define IDR_POPUP_MENU                  130
 #define IDC_LIST1                       1000
 #define IDC_BUTTON1                     1001
 #define IDC_RICHEDIT22                  1004

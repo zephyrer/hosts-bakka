@@ -4,7 +4,7 @@
 #pragma once
 
 #define APP_NAME			L"Bakka"
-#define APP_AGENT			L"User-Agent: Mozilla/4.0 (compatible; Bakka 1.0; Windows NT 6.0)\r\n"
+#define APP_AGENT			L"User-Agent: Mozilla/4.0 (compatible; Bakka; Windows NT 6.0)\r\n"
 
 #define HOST_FILE_POSTFIX	"\\drivers\\etc\\hosts"
 #define HOST_BFILE_POSTFIX	"_backup_bakka"
