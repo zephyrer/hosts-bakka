@@ -7,6 +7,7 @@
 #include "BakkaDlg.h"
 #include "MyInternetSession.h"
 #include "SystemTray.h"
+#include "Version.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -14,6 +15,8 @@
 
 CString g_strHostFile;
 CString g_strHostBackupFile;
+
+#define	WM_ICON_NOTIFY			WM_APP+10
 
 CSystemTray m_TrayIcon;
 
@@ -73,6 +76,7 @@ BEGIN_MESSAGE_MAP(CBakkaDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1, &CBakkaDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CBakkaDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CBakkaDlg::OnBnClickedButton3)
+	ON_MESSAGE(WM_ICON_NOTIFY, &CBakkaDlg::OnTrayNotification)
 END_MESSAGE_MAP()
 
 
@@ -105,7 +109,7 @@ BOOL CBakkaDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// TODO: Add extra initialization here
+	// Set ProgressCtrl's range and step
 	CProgressCtrl * m_ctlProgress = (CProgressCtrl*)GetDlgItem(IDC_PROGRESS1);
 	m_ctlProgress->SetRange(0, 100);
 	m_ctlProgress->SetStep(5);
@@ -137,7 +141,13 @@ BOOL CBakkaDlg::OnInitDialog()
 
 		GetDlgItem(IDOK)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON2)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
 	} /* failed */
+
+	// Make tray icon
+	m_TrayIcon.Create(this, WM_ICON_NOTIFY,
+	_T(VERSION_CAPTION), m_hIcon, IDR_POPUP_MENU);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -151,7 +161,12 @@ void CBakkaDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 	else
 	{
-		CDialog::OnSysCommand(nID, lParam);
+		if (nID == SC_MINIMIZE) {
+			//m_TrayIcon.MinimiseToTray(this);
+			CDialog::OnSysCommand(nID, lParam);
+		} else {
+			CDialog::OnSysCommand(nID, lParam);
+		}
 	}
 }
 
@@ -376,7 +391,7 @@ void CBakkaDlg::OnBnClickedButton3()
 	GetDlgItem(IDC_BUTTON3)->EnableWindow(TRUE);
 }
 
-// When you click "WON BOK"
+// When you click "REMOVE ALL"
 void CBakkaDlg::OnBnClickedButton1()
 {
 	GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
@@ -393,4 +408,13 @@ void CBakkaDlg::OnBnClickedButton1()
 	}
 
 	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
+}
+
+LRESULT CBakkaDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)
+{
+    // Delegate all the work back to the default 
+
+        // implementation in CSystemTray.
+
+    return m_TrayIcon.OnTrayNotification(wParam, lParam);
 }

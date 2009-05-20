@@ -40,4 +40,5 @@ public:
 	BOOL ReadHostsAndRename(CStringArray* hosts);
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
+	LRESULT OnTrayNotification(WPARAM wParam, LPARAM lParam);
 };

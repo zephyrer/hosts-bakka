@@ -258,6 +258,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Version.h"
+				>
+			</File>
+			<File
 				RelativePath=".\VersionNo.h"
 				>
 			</File>
@@ -281,6 +285,10 @@
 			</File>
 			<File
 				RelativePath=".\res\facebook.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\res\utilities.ico"
 				>
 			</File>
 		</Filter>
