@@ -1,7 +1,7 @@
 ;--------------------------------
 ;Define Settings
 
-  !define VERSION	1.2.3
+  !define VERSION	1.2.4
 
 
 ;--------------------------------
@@ -13,7 +13,7 @@
 ;General
   
   ;Name and file
-  Name "Hosts Bakka"
+  Name "Bakka"
   OutFile "Bakka_Setup_${VERSION}.exe"
 
   ;Default installation folder
@@ -25,12 +25,30 @@
   ;Request application privileges for Windows Vista
   RequestExecutionLevel admin
   
-  BrandingText "Hosts Bakka ${VERSION}"
+  BrandingText "Bakka ${VERSION}"
 
 ;--------------------------------
 ;Interface Settings
 
   !define MUI_ABORTWARNING
+
+;--------------------------------
+;Orange Theme Settings
+
+; MUI Settings / Icons
+!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\orange-install.ico"
+!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\orange-uninstall.ico"
+ 
+; MUI Settings / Header
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_RIGHT
+!define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\orange-r.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "${NSISDIR}\Contrib\Graphics\Header\orange-uninstall-r.bmp"
+ 
+; MUI Settings / Wizard
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\orange.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\orange-uninstall.bmp"
+
 
 ;--------------------------------
 ;Pages
@@ -42,7 +60,7 @@
   !insertmacro MUI_UNPAGE_INSTFILES
   
   !define MUI_FINISHPAGE_RUN "$INSTDIR\Bakka.exe"
-  !define MUI_FINISHPAGE_RUN_TEXT "Run Hosts Bakka"
+  !define MUI_FINISHPAGE_RUN_TEXT "Run Bakka"
   
   !insertmacro MUI_PAGE_FINISH  
 ;--------------------------------
@@ -75,24 +93,12 @@ Section "Bakka" SecDummy
 SectionEnd
 
 ;--------------------------------
-;Descriptions
-
-  ;Language strings
-;  LangString DESC_SecDummy ${LANG_ENGLISH} ""
-
-  ;Assign language strings to sections
-;  !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-;    !insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} $(DESC_SecDummy)
-;  !insertmacro MUI_FUNCTION_DESCRIPTION_END
-
-;--------------------------------
 ;Uninstaller Section
 
 Section "Uninstall"
 
   Delete "$INSTDIR\Bakka.exe"
   Delete "$INSTDIR\Uninstall.exe"
-  Delete "$SMPROGRAMS\Bakka\Bakka.lnk"
   Delete "$SMPROGRAMS\Bakka\Bakka.lnk"
 
   RMDir "$INSTDIR"
