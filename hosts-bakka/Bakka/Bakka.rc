@@ -66,7 +66,6 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\utilities.ico"
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // DESIGNINFO
@@ -75,13 +74,6 @@ IDR_MAINFRAME           ICON                    "res\\utilities.ico"
 #ifdef APSTUDIO_INVOKED
 GUIDELINES DESIGNINFO 
 BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 4
-    END
-
     IDD_BAKKA_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -102,10 +94,30 @@ IDR_POPUP_MENU MENU
 BEGIN
     POPUP "POPUP_MENU"
     BEGIN
-        MENUITEM "&About Bakka...",             ID_APP_ABOUT
-        MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BAKKA_DIALOG DIALOGEX 0, 0, 320, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Bakka"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "테스트(알파, 번영)",IDOK,227,7,86,33
+    PUSHBUTTON      "모두 지우기",IDC_BUTTON1,252,140,61,16
+    LTEXT           "Ready",IDC_STATIC,7,172,306,8
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,7,159,211,11
+    EDITTEXT        IDC_EDIT1,7,7,212,148,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
+    PUSHBUTTON      "디플로이(베타, 평화)",IDC_BUTTON2,228,48,85,21
+    PUSHBUTTON      "실 서비스(최소 설정)",IDC_BUTTON3,228,76,85,19
+    LTEXT           "알림: 설정 변경 후에는 브라우저 재시작을 권장합니다.",IDC_STATIC,7,185,194,8
 END
 
 

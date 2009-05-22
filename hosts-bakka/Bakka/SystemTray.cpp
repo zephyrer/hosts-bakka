@@ -889,27 +889,27 @@ LRESULT CSystemTray::OnTrayNotification(UINT wParam, LONG lParam)
     else if (LOWORD(lParam) == WM_LBUTTONDBLCLK) 
 #endif
     {
-        // double click received, the default action is to execute default menu item
-        pTargetWnd->SetForegroundWindow();  
+   //     // double click received, the default action is to execute default menu item
+   //     pTargetWnd->SetForegroundWindow();  
 
-        UINT uItem;
-        if (m_DefaultMenuItemByPos)
-        {
-            if (!menu.LoadMenu(m_tnd.uID))
-                return 0;
-            
-            pSubMenu = menu.GetSubMenu(0);
-            if (!pSubMenu)
-                return 0;
-            
-            uItem = pSubMenu->GetMenuItemID(m_DefaultMenuItemID);
+   //     UINT uItem;
+   //     if (m_DefaultMenuItemByPos)
+   //     {
+   //         if (!menu.LoadMenu(m_tnd.uID))
+   //             return 0;
+   //         
+   //         pSubMenu = menu.GetSubMenu(0);
+   //         if (!pSubMenu)
+   //             return 0;
+   //         
+   //         uItem = pSubMenu->GetMenuItemID(m_DefaultMenuItemID);
 
-			menu.DestroyMenu();
-        }
-        else
-            uItem = m_DefaultMenuItemID;
-        
-        pTargetWnd->PostMessage(WM_COMMAND, uItem, 0);
+			//menu.DestroyMenu();
+   //     }
+   //     else
+   //         uItem = m_DefaultMenuItemID;
+   //     
+   //     pTargetWnd->PostMessage(WM_COMMAND, uItem, 0);
     }
 
     return 1;

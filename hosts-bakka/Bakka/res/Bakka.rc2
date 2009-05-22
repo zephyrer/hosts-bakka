@@ -55,7 +55,7 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Dialog
+// About Dialog
 //
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
@@ -68,20 +68,4 @@ BEGIN
     LTEXT           "Copyright 2009 Sang-Kil Park Some rights reserved.",IDC_STATIC,40,24,188,8
     DEFPUSHBUTTON   "OK",IDOK,178,4,50,16,WS_GROUP
     LTEXT           "If you have any questions, please do not hesitate to contact me - skpark@daumcorp.com",IDC_STATIC,40,36,188,17
-END
-
-IDD_BAKKA_DIALOG DIALOGEX 0, 0, 320, 200
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-EXSTYLE WS_EX_APPWINDOW
-CAPTION "Bakka"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    DEFPUSHBUTTON   "테스트(알파, 번영)",IDOK,227,7,86,33
-    PUSHBUTTON      "모두 지우기",IDC_BUTTON1,252,140,61,16
-    LTEXT           "Ready",IDC_STATIC,7,172,306,8
-    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,7,159,211,11
-    EDITTEXT        IDC_EDIT1,7,7,212,148,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
-    PUSHBUTTON      "디플로이(베타, 평화)",IDC_BUTTON2,228,48,85,21
-    PUSHBUTTON      "실 서비스(최소 설정)",IDC_BUTTON3,228,76,85,19
-    LTEXT           "알림: 설정 적용 후에는 브라우저를 재시작 해주세요",IDC_STATIC,7,185,184,8
 END
