@@ -272,19 +272,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\Bakka.ico"
-				>
-			</File>
-			<File
 				RelativePath=".\Bakka.rc"
 				>
 			</File>
 			<File
 				RelativePath=".\res\Bakka.rc2"
-				>
-			</File>
-			<File
-				RelativePath=".\res\facebook.ico"
 				>
 			</File>
 			<File

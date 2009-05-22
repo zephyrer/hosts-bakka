@@ -161,9 +161,8 @@ void CBakkaDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 	else
 	{
-		if (nID == SC_MINIMIZE) {
-			//m_TrayIcon.MinimiseToTray(this);
-			CDialog::OnSysCommand(nID, lParam);
+		if (nID == SC_CLOSE) {
+			m_TrayIcon.MinimiseToTray(this);
 		} else {
 			CDialog::OnSysCommand(nID, lParam);
 		}
@@ -412,9 +411,9 @@ void CBakkaDlg::OnBnClickedButton1()
 
 LRESULT CBakkaDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)
 {
-    // Delegate all the work back to the default 
-
-        // implementation in CSystemTray.
+	if (LOWORD(lParam) == WM_LBUTTONDBLCLK) {
+		CSystemTray::MaximiseFromTray(this);
+    }
 
     return m_TrayIcon.OnTrayNotification(wParam, lParam);
 }
