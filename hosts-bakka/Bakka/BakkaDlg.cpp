@@ -76,6 +76,7 @@ BEGIN_MESSAGE_MAP(CBakkaDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1, &CBakkaDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CBakkaDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CBakkaDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CBakkaDlg::OnBnClickedButton4)
 	ON_MESSAGE(WM_ICON_NOTIFY, &CBakkaDlg::OnTrayNotification)
 END_MESSAGE_MAP()
 
@@ -335,7 +336,7 @@ void CBakkaDlg::OnBnClickedOk()
 			RestoreHosts(&hosts);
 		}
 	}
-
+	
 	GetDlgItem(IDOK)->EnableWindow(TRUE);
 }
 
@@ -407,6 +408,31 @@ void CBakkaDlg::OnBnClickedButton1()
 	}
 
 	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
+}
+
+// When you click "LOCAL"
+void CBakkaDlg::OnBnClickedButton4()
+{
+	GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
+	InitEditCtrlAndProgress();
+
+	DWORD Status;
+	CStringArray hosts;
+
+	if (ReadHostsAndRename(&hosts)) {
+		StepIt();
+		CMyInternetSession *Session = NULL;
+		Session = new CMyInternetSession(NULL);
+		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE4, &hosts);
+
+		if (Status == HTTP_STATUS_OK) {
+			DummyAndDone(1);
+		} else {
+			RestoreHosts(&hosts);
+		}
+	}
+
+	GetDlgItem(IDC_BUTTON4)->EnableWindow(TRUE);
 }
 
 LRESULT CBakkaDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)

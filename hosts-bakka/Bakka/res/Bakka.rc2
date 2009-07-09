@@ -69,3 +69,16 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,178,4,50,16,WS_GROUP
     LTEXT           "If you have any questions, please do not hesitate to contact me - skpark@daumcorp.com",IDC_STATIC,40,36,188,17
 END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_MENU MENU 
+BEGIN
+    POPUP "POPUP_MENU"
+    BEGIN
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
