@@ -20,7 +20,8 @@
 #define HOST_FILE1			L""
 #define HOST_FILE2			L""
 #define HOST_FILE3			L""
-#define HOST_PORT			81
+#define HOST_FILE4			L""
+#define HOST_PORT			80
 
 #ifndef __AFXWIN_H__
 	#error "include 'stdafx.h' before including this file for PCH"
