@@ -17,7 +17,7 @@
 CString g_strHostFile;
 CString g_strHostBackupFile;
 
-CString g_strTitle;
+CString g_strTitle, g_strRestoreBtnName;
 CString g_strButtonName1, g_strButtonName2, g_strButtonName3, g_strButtonName4;
 CString g_strButtonHost1, g_strButtonHost2, g_strButtonHost3, g_strButtonHost4;
 CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4;
@@ -155,6 +155,13 @@ BOOL CBakkaDlg::OnInitDialog()
 		SetWindowText(L"Bakka");
 	} else {
 		SetWindowText(L"Bakka - " + g_strTitle);
+	}
+
+	iniFile.GetString(L"global", L"restore_btn_name", g_strRestoreBtnName, L"");
+	if (g_strRestoreBtnName == "") {
+		GetDlgItem(IDC_BUTTON1)->SetWindowText(L"원래대로");
+	} else {
+		GetDlgItem(IDC_BUTTON1)->SetWindowText(g_strRestoreBtnName);
 	}
 
 	iniFile.GetString(L"button_1", L"name", g_strButtonName1, L"");
