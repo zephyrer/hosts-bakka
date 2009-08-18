@@ -8,6 +8,7 @@
 #include "MyInternetSession.h"
 #include "SystemTray.h"
 #include "Version.h"
+#include "IniFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -16,9 +17,14 @@
 CString g_strHostFile;
 CString g_strHostBackupFile;
 
+CString g_strButtonName1, g_strButtonName2, g_strButtonName3, g_strButtonName4;
+CString g_strButtonHost1, g_strButtonHost2, g_strButtonHost3, g_strButtonHost4;
+CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4;
+
 #define	WM_ICON_NOTIFY			WM_APP+10
 
 CSystemTray m_TrayIcon;
+CIniFile iniFile(L".\\Bakka.ini", 1024);
 
 // CAboutDlg dialog used for App About
 
@@ -52,10 +58,6 @@ END_MESSAGE_MAP()
 
 
 // CBakkaDlg dialog
-
-
-
-
 CBakkaDlg::CBakkaDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CBakkaDlg::IDD, pParent)
 {
@@ -123,10 +125,6 @@ BOOL CBakkaDlg::OnInitDialog()
 	{ /* succeeded */
 		path.ReleaseBuffer();
 
-#ifdef _DEBUG
-		afxDump << "System32 Path:  " << path << "\n";
-#endif
-
 		path += HOST_FILE_POSTFIX;
 		g_strHostFile = path;
 
@@ -149,6 +147,47 @@ BOOL CBakkaDlg::OnInitDialog()
 	// Make tray icon
 	m_TrayIcon.Create(this, WM_ICON_NOTIFY,
 	_T(VERSION_CAPTION), m_hIcon, IDR_POPUP_MENU);
+
+	// Read INI Information
+	iniFile.GetString(L"button_1", L"name", g_strButtonName1, L"");
+	iniFile.GetString(L"button_1", L"host", g_strButtonHost1, L"");
+	iniFile.GetString(L"button_1", L"file", g_strButtonFile1, L"");
+	if (g_strButtonName1 == "") {
+		GetDlgItem(IDOK)->SetWindowText(L"사용 안함");
+		GetDlgItem(IDOK)->EnableWindow(FALSE);
+	} else {
+		GetDlgItem(IDOK)->SetWindowText(g_strButtonName1);
+	}
+
+	iniFile.GetString(L"button_2", L"name", g_strButtonName2, L"");
+	iniFile.GetString(L"button_2", L"host", g_strButtonHost2, L"");
+	iniFile.GetString(L"button_2", L"file", g_strButtonFile2, L"");
+	if (g_strButtonName2 == "") {
+		GetDlgItem(IDC_BUTTON2)->SetWindowText(L"사용 안함");
+		GetDlgItem(IDC_BUTTON2)->EnableWindow(FALSE);
+	} else {
+		GetDlgItem(IDC_BUTTON2)->SetWindowText(g_strButtonName2);
+	}
+
+	iniFile.GetString(L"button_3", L"name", g_strButtonName3, L"");
+	iniFile.GetString(L"button_3", L"host", g_strButtonHost3, L"");
+	iniFile.GetString(L"button_3", L"file", g_strButtonFile3, L"");
+	if (g_strButtonName3 == "") {
+		GetDlgItem(IDC_BUTTON3)->SetWindowText(L"사용 안함");
+		GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
+	} else {
+		GetDlgItem(IDC_BUTTON3)->SetWindowText(g_strButtonName3);
+	}
+
+	iniFile.GetString(L"button_4", L"name", g_strButtonName4, L"");
+	iniFile.GetString(L"button_4", L"host", g_strButtonHost4, L"");
+	iniFile.GetString(L"button_4", L"file", g_strButtonFile4, L"");
+	if (g_strButtonName4 == "") {
+		GetDlgItem(IDC_BUTTON4)->SetWindowText(L"사용 안함");
+		GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
+	} else {
+		GetDlgItem(IDC_BUTTON4)->SetWindowText(g_strButtonName4);
+	}
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -315,7 +354,7 @@ void CBakkaDlg::RestoreHosts(CStringArray* hosts) {
 		}
 }
 
-// When you click "TEST"
+// When you click "BTN1"
 void CBakkaDlg::OnBnClickedOk()
 {
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
@@ -328,7 +367,7 @@ void CBakkaDlg::OnBnClickedOk()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE1, &hosts);
+		Status = Session->GetAndSetHosts(g_strButtonHost1, 80, g_strButtonFile1, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
@@ -341,7 +380,7 @@ void CBakkaDlg::OnBnClickedOk()
 }
 
 
-// When you click "DEPLOY"
+// When you click "BTN2"
 void CBakkaDlg::OnBnClickedButton2()
 {
 	GetDlgItem(IDC_BUTTON2)->EnableWindow(FALSE);
@@ -354,7 +393,7 @@ void CBakkaDlg::OnBnClickedButton2()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE2, &hosts);
+		Status = Session->GetAndSetHosts(g_strButtonHost2, 80, g_strButtonFile2, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
@@ -366,7 +405,7 @@ void CBakkaDlg::OnBnClickedButton2()
 	GetDlgItem(IDC_BUTTON2)->EnableWindow(TRUE);
 }
 
-// When you click "REAL SERVICES"
+// When you click "BTN3"
 void CBakkaDlg::OnBnClickedButton3()
 {
 	GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
@@ -379,7 +418,7 @@ void CBakkaDlg::OnBnClickedButton3()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE3, &hosts);
+		Status = Session->GetAndSetHosts(g_strButtonHost3, 80, g_strButtonFile3, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
@@ -410,7 +449,7 @@ void CBakkaDlg::OnBnClickedButton1()
 	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
 }
 
-// When you click "LOCAL"
+// When you click "BTN4"
 void CBakkaDlg::OnBnClickedButton4()
 {
 	GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
@@ -423,7 +462,7 @@ void CBakkaDlg::OnBnClickedButton4()
 		StepIt();
 		CMyInternetSession *Session = NULL;
 		Session = new CMyInternetSession(NULL);
-		Status = Session->GetAndSetHosts(HOST_SERVER, HOST_PORT, HOST_FILE4, &hosts);
+		Status = Session->GetAndSetHosts(g_strButtonHost4, 80, g_strButtonFile4, &hosts);
 
 		if (Status == HTTP_STATUS_OK) {
 			DummyAndDone(1);
