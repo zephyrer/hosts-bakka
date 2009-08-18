@@ -17,6 +17,7 @@
 CString g_strHostFile;
 CString g_strHostBackupFile;
 
+CString g_strTitle;
 CString g_strButtonName1, g_strButtonName2, g_strButtonName3, g_strButtonName4;
 CString g_strButtonHost1, g_strButtonHost2, g_strButtonHost3, g_strButtonHost4;
 CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4;
@@ -149,6 +150,13 @@ BOOL CBakkaDlg::OnInitDialog()
 	_T(VERSION_CAPTION), m_hIcon, IDR_POPUP_MENU);
 
 	// Read INI Information
+	iniFile.GetString(L"global", L"title", g_strTitle, L"");
+	if (g_strTitle == "") {
+		SetWindowText(L"Bakka");
+	} else {
+		SetWindowText(L"Bakka - " + g_strTitle);
+	}
+
 	iniFile.GetString(L"button_1", L"name", g_strButtonName1, L"");
 	iniFile.GetString(L"button_1", L"host", g_strButtonHost1, L"");
 	iniFile.GetString(L"button_1", L"file", g_strButtonFile1, L"");
