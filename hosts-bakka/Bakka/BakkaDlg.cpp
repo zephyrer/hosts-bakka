@@ -383,6 +383,8 @@ void CBakkaDlg::OnBnClickedOk()
 			RestoreHosts(&hosts);
 		}
 	}
+
+	DnsFlushResolverCache();
 	
 	GetDlgItem(IDOK)->EnableWindow(TRUE);
 }
@@ -410,6 +412,8 @@ void CBakkaDlg::OnBnClickedButton2()
 		}
 	}
 
+	DnsFlushResolverCache();
+
 	GetDlgItem(IDC_BUTTON2)->EnableWindow(TRUE);
 }
 
@@ -435,6 +439,8 @@ void CBakkaDlg::OnBnClickedButton3()
 		}
 	}
 
+	DnsFlushResolverCache();
+
 	GetDlgItem(IDC_BUTTON3)->EnableWindow(TRUE);
 }
 
@@ -453,6 +459,8 @@ void CBakkaDlg::OnBnClickedButton1()
 		StepIt();
 		DummyAndDone(5);
 	}
+
+	DnsFlushResolverCache();
 
 	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
 }
@@ -479,6 +487,8 @@ void CBakkaDlg::OnBnClickedButton4()
 		}
 	}
 
+	DnsFlushResolverCache();
+
 	GetDlgItem(IDC_BUTTON4)->EnableWindow(TRUE);
 }
 
@@ -489,4 +499,12 @@ LRESULT CBakkaDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)
     }
 
     return m_TrayIcon.OnTrayNotification(wParam, lParam);
+}
+
+BOOL CBakkaDlg::DnsFlushResolverCache()
+{
+    BOOL (WINAPI *DoDnsFlushResolverCache)();
+	*(FARPROC *)&DoDnsFlushResolverCache = GetProcAddress(LoadLibrary(L"dnsapi.dll"), "DnsFlushResolverCache");
+    if(!DoDnsFlushResolverCache) return FALSE;
+    return DoDnsFlushResolverCache();
 }
