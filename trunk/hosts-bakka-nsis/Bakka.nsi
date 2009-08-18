@@ -1,7 +1,7 @@
 ;--------------------------------
 ;Define Settings
 
-  !define VERSION	1.2.6
+  !define VERSION	1.3.0
 
 
 ;--------------------------------
@@ -76,6 +76,7 @@ Section "Bakka" SecDummy
   SetOutPath "$INSTDIR"
   
   File /a "Bakka.exe"
+  File /a "Bakka.ini"
   
   CreateDirectory "$SMPROGRAMS\Bakka"
   CreateShortCut "$SMPROGRAMS\Bakka\Bakka.lnk" "$INSTDIR\Bakka.exe"
