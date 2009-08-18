@@ -42,4 +42,5 @@ public:
 	afx_msg void OnBnClickedButton3();
 	LRESULT OnTrayNotification(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnBnClickedButton4();
+	BOOL DnsFlushResolverCache();
 };
