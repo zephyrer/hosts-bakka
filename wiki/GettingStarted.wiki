@@ -6,7 +6,17 @@ Bakka(바까)는 호스트를 변경해서 테스트 할 일이 있을때 이를
 
 http://farm3.static.flickr.com/2494/3835450151_decdaf2e73.jpg
 
-= Details =
+사용법은 매우 쉽습니다.
+
+원하는 버튼을 살짝 눌러주세요~
+
+자동으로 특정 URL로 요청을 보내고 도메인 정보를 받아와 윈도우 호스트 파일(C:\Windows\System32\drivers\etc\hosts)에 셋팅합니다.
+
+이후 브라우저를 재시작만 해주시면 끝.
+
+(참고: 이곳에서 배포되는 설치 버전은 Daum 아고라 개발에 필요한 설정이 기본으로 셋팅되어 있으며 Daum 사내에서만 이용 가능합니다.)
+
+= 그렇다면, 우리 서비스에 Bakka를 쓸 수 있을까요? =
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
