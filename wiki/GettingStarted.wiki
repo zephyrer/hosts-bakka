@@ -76,3 +76,4 @@ echo (iconv("UTF-8", "EUC-KR", $DATA));
   * ESC 키를 누르면 프로그램이 종료됩니다.
   * 호스트 설정 변경 후에는 반드시 브라우저를 재시작 해주세요. DNS 정보가 캐시되어 있기 때문에 바로 적용되지 않습니다. 이는 ipconfig /flushdns 를 해도 마찬가지 입니다.
   * Bakka.ini 파일은 반드시 유니코드로 저장해야 합니다.
+  * Firefox 브라우저를 사용하는 경우 [https://addons.mozilla.org/en-US/firefox/addon/590 ShowIP] 애드온을 이용하시면 호스트 적용 여부를 간단히 확인할 수 있습니다.
