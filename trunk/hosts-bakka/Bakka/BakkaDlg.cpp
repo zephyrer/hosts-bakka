@@ -76,10 +76,10 @@ BEGIN_MESSAGE_MAP(CBakkaDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &CBakkaDlg::OnBnClickedOk)
-	ON_BN_CLICKED(IDC_BUTTON1, &CBakkaDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CBakkaDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CBakkaDlg::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &CBakkaDlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON5, &CBakkaDlg::OnBnClickedButton5)
 	ON_MESSAGE(WM_ICON_NOTIFY, &CBakkaDlg::OnTrayNotification)
 END_MESSAGE_MAP()
 
@@ -152,10 +152,13 @@ BOOL CBakkaDlg::OnInitDialog()
 	// Read INI Information
 	iniFile.GetString(L"global", L"title", g_strTitle, L"");
 	if (g_strTitle == "") {
-		SetWindowText(L"Bakka");
+		g_strTitle = "Bakka";
 	} else {
-		SetWindowText(L"Bakka - " + g_strTitle);
+		CString t_strTitle = g_strTitle;
+		g_strTitle = "Bakka - ";
+		g_strTitle += t_strTitle;
 	}
+	SetWindowText(g_strTitle);
 
 	iniFile.GetString(L"global", L"restore_btn_name", g_strRestoreBtnName, L"");
 	if (g_strRestoreBtnName == "") {
@@ -451,27 +454,6 @@ void CBakkaDlg::OnBnClickedButton3()
 	GetDlgItem(IDC_BUTTON3)->EnableWindow(TRUE);
 }
 
-// When you click "REMOVE ALL"
-void CBakkaDlg::OnBnClickedButton1()
-{
-	GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
-	InitEditCtrlAndProgress();
-
-	ShowStatus(L"Restoring Windows hosts to factory settings");
-	
-	CStringArray hosts;
-	if (ReadHostsAndRename(&hosts)) {
-		StepIt();
-		RestoreHosts(&hosts);
-		StepIt();
-		DummyAndDone(5);
-	}
-
-	DnsFlushResolverCache();
-
-	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
-}
-
 // When you click "BTN4"
 void CBakkaDlg::OnBnClickedButton4()
 {
@@ -497,6 +479,27 @@ void CBakkaDlg::OnBnClickedButton4()
 	DnsFlushResolverCache();
 
 	GetDlgItem(IDC_BUTTON4)->EnableWindow(TRUE);
+}
+
+// When you click "RESTORE"
+void CBakkaDlg::OnBnClickedButton5()
+{
+	GetDlgItem(IDC_BUTTON5)->EnableWindow(FALSE);
+	InitEditCtrlAndProgress();
+
+	ShowStatus(L"Restoring Windows hosts to factory settings");
+	
+	CStringArray hosts;
+	if (ReadHostsAndRename(&hosts)) {
+		StepIt();
+		RestoreHosts(&hosts);
+		StepIt();
+		DummyAndDone(5);
+	}
+
+	DnsFlushResolverCache();
+
+	GetDlgItem(IDC_BUTTON5)->EnableWindow(TRUE);
 }
 
 LRESULT CBakkaDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)

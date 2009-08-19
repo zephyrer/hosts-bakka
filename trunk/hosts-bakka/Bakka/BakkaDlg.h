@@ -28,8 +28,6 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedOk();
-	afx_msg void OnBnClickedButton1();
 	void ShowEditBox(LPCTSTR str);
 	void ShowStatus(LPCTSTR str);
 	void StepIt();
@@ -38,9 +36,11 @@ public:
 	void DummyAndDone(int p);
 	void RestoreHosts(CStringArray* hosts);
 	BOOL ReadHostsAndRename(CStringArray* hosts);
+	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
-	LRESULT OnTrayNotification(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnBnClickedButton4();
+	afx_msg void OnBnClickedButton5();
+	LRESULT OnTrayNotification(WPARAM wParam, LPARAM lParam);
 	BOOL DnsFlushResolverCache();
 };
