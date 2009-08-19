@@ -1,4 +1,4 @@
-#summary Brief introduction to this small utility
+#summary A brief introduction to this small utility.
 
 = 소개 =
 
