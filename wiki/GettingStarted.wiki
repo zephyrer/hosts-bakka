@@ -4,7 +4,7 @@
 
 Bakka(바까)는 호스트를 변경해서 테스트 할 일이 있을때 이를 자동으로 설정해주는 간단한 도구입니다. 
 
-http://farm4.static.flickr.com/3424/3835899568_f7377b0a1f.jpg
+http://farm3.static.flickr.com/2494/3835450151_decdaf2e73.jpg
 
 = Details =
 
