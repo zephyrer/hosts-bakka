@@ -29,7 +29,7 @@ CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4;
 CIniFile iniFile(_T(".\\Bakka.ini"), 1024);
 void ShowStatus(CString str)
 {
-	_tprintf(_T("##%s\n"),str);
+	WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE),str,str.GetLength(),NULL,NULL);
 }
 BOOL ReadHostsAndRename(CStringArray* hosts) {
 

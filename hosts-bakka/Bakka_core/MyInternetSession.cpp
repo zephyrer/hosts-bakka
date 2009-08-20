@@ -111,7 +111,11 @@ void CMyInternetSession::OnStatusCallback(DWORD  dwContext , DWORD dwInternetSta
 //that needs updating
 void CMyInternetSession::ShowStatus(LPCTSTR str)
 {
-	_tprintf(_T("#%s\n"),str );
+	CString sstr;
+	sstr = str;
+	_tprintf(_T("#") );
+	WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE),sstr,sstr.GetLength(),NULL,NULL);
+	_tprintf(_T("\n") );
 }
 
 void CMyInternetSession::ShowEditBox(LPCTSTR str)
@@ -119,8 +123,9 @@ void CMyInternetSession::ShowEditBox(LPCTSTR str)
 	CString sstr;
 	sstr = str;
 	
+	
 	_tprintf(_T("@TEXTBEGIN\n"));
-	_tprintf(_T("%s\n"),str );
+	WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE),sstr,sstr.GetLength(),NULL,NULL);
 	_tprintf(_T("@TEXTEND\n"));
 }
 
