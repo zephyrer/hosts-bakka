@@ -16,6 +16,8 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 
+private:
+	CProgressCtrl * m_ctlProgress;
 
 // Implementation
 protected:
@@ -32,10 +34,10 @@ public:
 	void ShowStatus(LPCTSTR str);
 	void StepIt();
 	void StepIt(DWORD pos);
-	void InitEditCtrlAndProgress();
+	void ResetEditCtrlAndProgress();
 	void DummyAndDone(int p);
 	void RestoreHosts(CStringArray* hosts);
-	BOOL ReadHostsAndRename(CStringArray* hosts);
+	BOOL ReadHosts(CStringArray* hosts);
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
