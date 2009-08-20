@@ -220,11 +220,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Bakka\IniFile.h"
+				RelativePath=".\IniFile.h"
 				>
 			</File>
 			<File
-				RelativePath=".\IniFile.h"
+				RelativePath="..\Bakka\IniFile.h"
 				>
 			</File>
 			<File
