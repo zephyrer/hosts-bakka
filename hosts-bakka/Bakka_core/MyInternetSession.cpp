@@ -111,18 +111,17 @@ void CMyInternetSession::OnStatusCallback(DWORD  dwContext , DWORD dwInternetSta
 //that needs updating
 void CMyInternetSession::ShowStatus(LPCTSTR str)
 {
-	//CBakkaDlg * pBakkaDlg = (CBakkaDlg*) AfxGetMainWnd();
-	//pBakkaDlg->ShowStatus(str);
-	//_tprintf("#%s\n",str);
+	_tprintf(_T("#%s\n"),str );
 }
 
 void CMyInternetSession::ShowEditBox(LPCTSTR str)
 {
-	//CBakkaDlg * pBakkaDlg = (CBakkaDlg*) AfxGetMainWnd();
-	//pBakkaDlg->ShowEditBox(str);
-	//printf("@TEXTBEGIN\n");
-	//_tprintf("%s\n",str);
-	//printf("@TEXTEND\n");
+	CString sstr;
+	sstr = str;
+	
+	_tprintf(_T("@TEXTBEGIN\n"));
+	_tprintf(_T("%s\n"),str );
+	_tprintf(_T("@TEXTEND\n"));
 }
 
 
@@ -289,7 +288,7 @@ DWORD CMyInternetSession::GetAndSetHosts(LPCTSTR lpstrServer, int nPort, CString
 				tmp.Replace(L"\n", L"\r\n");
 
 				ShowEditBox(tmp);
-				ShowStatus(L"Fetching hosts from server");
+				ShowStatus(_T("Fetching hosts from server"));
 			}
 			myfile.WriteString(BAKKA_END_TAG);
 			myfile.Close();
@@ -308,7 +307,7 @@ DWORD CMyInternetSession::GetAndSetHosts(LPCTSTR lpstrServer, int nPort, CString
 	catch (CInternetException* pEx) 
 	{
 		// catch any exceptions from WinINet      
-		ShowStatus(L"ERROR: Can't fetch hosts from server");
+		ShowStatus(_T("ERROR: Can't fetch hosts from server"));
 
 		pEx->Delete();
 		if(pFile)

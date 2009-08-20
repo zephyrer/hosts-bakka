@@ -26,10 +26,10 @@ CString g_strButtonName1, g_strButtonName2, g_strButtonName3, g_strButtonName4;
 CString g_strButtonHost1, g_strButtonHost2, g_strButtonHost3, g_strButtonHost4;
 CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4;
 
-CIniFile iniFile(L".\\Bakka.ini", 1024);
+CIniFile iniFile(_T(".\\Bakka.ini"), 1024);
 void ShowStatus(CString str)
 {
-	//printf("##%s\n",str);
+	_tprintf(_T("##%s\n"),str);
 }
 BOOL ReadHostsAndRename(CStringArray* hosts) {
 
