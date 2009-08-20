@@ -200,11 +200,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IniFile.cpp"
+				RelativePath=".\HostsUpdater.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MyInternetSession.cpp"
+				RelativePath=".\IniFile.cpp"
 				>
 			</File>
 			<File
@@ -246,11 +246,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IniFile.h"
+				RelativePath=".\HostsUpdater.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MyInternetSession.h"
+				RelativePath=".\IniFile.h"
 				>
 			</File>
 			<File
