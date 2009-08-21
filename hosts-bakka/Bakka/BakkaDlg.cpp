@@ -149,9 +149,10 @@ BOOL CBakkaDlg::OnInitDialog()
 		ShowStatus(L"ERROR: Can't find windows system directory");
 
 		GetDlgItem(IDOK)->EnableWindow(FALSE);
-		GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON2)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON5)->EnableWindow(FALSE);
 	} /* failed */
 
 
@@ -184,9 +185,9 @@ BOOL CBakkaDlg::OnInitDialog()
 	// Init RESTORE BUTTON
 	iniFile.GetString(L"global", L"restore_btn_name", g_strRestoreBtnName, L"");
 	if (g_strRestoreBtnName == "") {
-		GetDlgItem(IDC_BUTTON1)->SetWindowText(BTNTEXT_RESTORE);
+		GetDlgItem(IDC_BUTTON5)->SetWindowText(BTNTEXT_RESTORE);
 	} else {
-		GetDlgItem(IDC_BUTTON1)->SetWindowText(g_strRestoreBtnName);
+		GetDlgItem(IDC_BUTTON5)->SetWindowText(g_strRestoreBtnName);
 	}
 
 	// Init BUTTON #1
