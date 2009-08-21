@@ -62,7 +62,7 @@ BOOL CBakkaApp::InitInstance()
 	CBakkaDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
+	if (nResponse == IDC_BUTTON1)
 	{
 		// TODO: Place code here to handle when the dialog is
 		//  dismissed with OK

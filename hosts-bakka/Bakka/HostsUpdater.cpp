@@ -1,4 +1,4 @@
-// MyInternetSession.cpp: implementation of the CHostsUpdater class.
+// HostsUpdater.cpp: implementation of the CHostsUpdater class.
 //
 //////////////////////////////////////////////////////////////////////
 
