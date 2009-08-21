@@ -75,7 +75,7 @@ BEGIN_MESSAGE_MAP(CBakkaDlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDOK, &CBakkaDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_BUTTON1, &CBakkaDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON2, &CBakkaDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CBakkaDlg::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &CBakkaDlg::OnBnClickedButton4)
@@ -119,7 +119,7 @@ BOOL CBakkaDlg::OnInitDialog()
 	/* Init ProgressCtrl                                                    */
 	/************************************************************************/
 	// Set ProgressCtrl's range and step
-	m_ctlProgress = (CProgressCtrl*)GetDlgItem(IDC_PROGRESS1);
+	m_ctlProgress = (CProgressCtrl*)GetDlgItem(IDC_PROGRESS);
 	m_ctlProgress->SetRange(0, 100);
 	m_ctlProgress->SetStep(5);
 
@@ -148,7 +148,7 @@ BOOL CBakkaDlg::OnInitDialog()
 
 		ShowStatus(L"ERROR: Can't find windows system directory");
 
-		GetDlgItem(IDOK)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON2)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
@@ -195,10 +195,10 @@ BOOL CBakkaDlg::OnInitDialog()
 	iniFile.GetString(L"button_1", L"host", g_strButtonHost1, L"");
 	iniFile.GetString(L"button_1", L"file", g_strButtonFile1, L"");
 	if (g_strButtonName1 == "") {
-		GetDlgItem(IDOK)->SetWindowText(BTNTEXT_NOTUSED);
-		GetDlgItem(IDOK)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON1)->SetWindowText(BTNTEXT_NOTUSED);
+		GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
 	} else {
-		GetDlgItem(IDOK)->SetWindowText(g_strButtonName1);
+		GetDlgItem(IDC_BUTTON1)->SetWindowText(g_strButtonName1);
 	}
 
 	// Init BUTTON #2
@@ -345,7 +345,7 @@ BOOL CBakkaDlg::ReadHosts(CStringArray* hosts) {
 
 void CBakkaDlg::ShowEditBox(LPCTSTR str) {
 	CEdit * ce;
-	ce = (CEdit*) GetDlgItem(IDC_EDIT1);
+	ce = (CEdit*) GetDlgItem(IDC_EDIT);
 
 	int length = ce->GetWindowTextLength();
 	ce->SetSel(length, length);
@@ -371,7 +371,7 @@ void CBakkaDlg::ResetEditCtrlAndProgress() {
 	StepIt(0);
 
 	CEdit * ce;
-	ce = (CEdit*) GetDlgItem(IDC_EDIT1);
+	ce = (CEdit*) GetDlgItem(IDC_EDIT);
 	int length = ce->GetWindowTextLength();
 	ce->SetSel(0, length);
 	ce->ReplaceSel(L"");
@@ -402,7 +402,7 @@ void CBakkaDlg::RestoreHosts(CStringArray* hosts) {
 // When you click "BTN1"
 void CBakkaDlg::OnBnClickedOk()
 {
-	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	GetDlgItem(IDC_BUTTON1)->EnableWindow(FALSE);
 	ResetEditCtrlAndProgress();
 
 	DWORD Status;
@@ -423,7 +423,7 @@ void CBakkaDlg::OnBnClickedOk()
 
 	DnsFlushResolverCache();
 	
-	GetDlgItem(IDOK)->EnableWindow(TRUE);
+	GetDlgItem(IDC_BUTTON1)->EnableWindow(TRUE);
 }
 
 
