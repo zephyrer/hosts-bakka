@@ -18,9 +18,9 @@ CString g_strHostFile;
 CString g_strHostBackupFile;
 
 CString g_strTitle, g_strRestoreBtnName;
-CString g_strButtonName1, g_strButtonName2, g_strButtonName3, g_strButtonName4;
-CString g_strButtonHost1, g_strButtonHost2, g_strButtonHost3, g_strButtonHost4;
-CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4;
+CString g_strButtonName1, g_strButtonName2, g_strButtonName3, g_strButtonName4, g_strButtonName5;
+CString g_strButtonHost1, g_strButtonHost2, g_strButtonHost3, g_strButtonHost4, g_strButtonHost5;
+CString g_strButtonFile1, g_strButtonFile2, g_strButtonFile3, g_strButtonFile4, g_strButtonFile5;
 
 #define	WM_ICON_NOTIFY			WM_APP+10
 
@@ -80,6 +80,7 @@ BEGIN_MESSAGE_MAP(CBakkaDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON3, &CBakkaDlg::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &CBakkaDlg::OnBnClickedButton4)
 	ON_BN_CLICKED(IDC_BUTTON5, &CBakkaDlg::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON6, &CBakkaDlg::OnBnClickedButton6)
 	ON_MESSAGE(WM_ICON_NOTIFY, &CBakkaDlg::OnTrayNotification)
 END_MESSAGE_MAP()
 
@@ -153,6 +154,7 @@ BOOL CBakkaDlg::OnInitDialog()
 		GetDlgItem(IDC_BUTTON3)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON5)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON6)->EnableWindow(FALSE);
 	} /* failed */
 
 
@@ -185,9 +187,9 @@ BOOL CBakkaDlg::OnInitDialog()
 	// Init RESTORE BUTTON
 	iniFile.GetString(L"global", L"restore_btn_name", g_strRestoreBtnName, L"");
 	if (g_strRestoreBtnName == "") {
-		GetDlgItem(IDC_BUTTON5)->SetWindowText(BTNTEXT_RESTORE);
+		GetDlgItem(IDC_BUTTON6)->SetWindowText(BTNTEXT_RESTORE);
 	} else {
-		GetDlgItem(IDC_BUTTON5)->SetWindowText(g_strRestoreBtnName);
+		GetDlgItem(IDC_BUTTON6)->SetWindowText(g_strRestoreBtnName);
 	}
 
 	// Init BUTTON #1
@@ -232,6 +234,17 @@ BOOL CBakkaDlg::OnInitDialog()
 		GetDlgItem(IDC_BUTTON4)->EnableWindow(FALSE);
 	} else {
 		GetDlgItem(IDC_BUTTON4)->SetWindowText(g_strButtonName4);
+	}
+
+	// Init BUTTON #5
+	iniFile.GetString(L"button_5", L"name", g_strButtonName5, L"");
+	iniFile.GetString(L"button_5", L"host", g_strButtonHost5, L"");
+	iniFile.GetString(L"button_5", L"file", g_strButtonFile5, L"");
+	if (g_strButtonName4 == "") {
+		GetDlgItem(IDC_BUTTON5)->SetWindowText(BTNTEXT_NOTUSED);
+		GetDlgItem(IDC_BUTTON5)->EnableWindow(FALSE);
+	} else {
+		GetDlgItem(IDC_BUTTON5)->SetWindowText(g_strButtonName5);
 	}
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -508,10 +521,37 @@ void CBakkaDlg::OnBnClickedButton4()
 	GetDlgItem(IDC_BUTTON4)->EnableWindow(TRUE);
 }
 
-// When you click "RESTORE"
+// When you click "BTN5"
 void CBakkaDlg::OnBnClickedButton5()
 {
 	GetDlgItem(IDC_BUTTON5)->EnableWindow(FALSE);
+	ResetEditCtrlAndProgress();
+
+	DWORD Status;
+	CStringArray hosts;
+
+	if (ReadHosts(&hosts)) {
+		StepIt();
+		CHostsUpdater *Session = NULL;
+		Session = new CHostsUpdater(NULL);
+		Status = Session->GetAndSetHosts(g_strButtonHost5, 80, g_strButtonFile5, &hosts);
+
+		if (Status == HTTP_STATUS_OK) {
+			DummyAndDone(1);
+		} else {
+			RestoreHosts(&hosts);
+		}
+	}
+
+	DnsFlushResolverCache();
+
+	GetDlgItem(IDC_BUTTON5)->EnableWindow(TRUE);
+}
+
+// When you click "RESTORE"
+void CBakkaDlg::OnBnClickedButton6()
+{
+	GetDlgItem(IDC_BUTTON6)->EnableWindow(FALSE);
 	ResetEditCtrlAndProgress();
 
 	ShowStatus(L"Restoring Windows hosts to factory settings");
@@ -526,7 +566,7 @@ void CBakkaDlg::OnBnClickedButton5()
 
 	DnsFlushResolverCache();
 
-	GetDlgItem(IDC_BUTTON5)->EnableWindow(TRUE);
+	GetDlgItem(IDC_BUTTON6)->EnableWindow(TRUE);
 }
 
 LRESULT CBakkaDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)

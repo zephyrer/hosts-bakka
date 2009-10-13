@@ -96,7 +96,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="verbuild VersionNo.h 1.3.*.+ -d2009 -xFp -b1.0.0.0 -e10.30.9999.100 -s -u"
+				CommandLine="verbuild VersionNo.h 1.4.*.+ -d2009 -xFp -b1.0.0.0 -e10.30.9999.100 -s -u"
 			/>
 		</Configuration>
 		<Configuration
