@@ -210,7 +210,7 @@ DWORD CHostsUpdater::GetAndSetHosts(LPCTSTR lpstrServer, int nPort, CString strF
 	try {		
 
 		StepIt();
-		pServer = Session.GetHttpConnection(lpstrServer, usPort, pstrUserName, pstrPassword);
+		pServer = Session.GetHttpConnection(lpstrServer, INTERNET_FLAG_DONT_CACHE, usPort, pstrUserName, pstrPassword);
 		pFile = pServer->OpenRequest(pstrVerb, strFile, pstrReferer, 1, 
 				&pstrAcceptTypes, pstrVersion, dwHttpRequestFlags);
 
