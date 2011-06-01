@@ -37,6 +37,7 @@ print '''
   2) RC
   3) Production
   4) Local
+  5) Beta
 --------------------------------------------------------------------
 '''
 m = raw_input("Menu Number : ")
@@ -44,7 +45,8 @@ url = {
     "1": "http://dev.media.daum.net/wiki/index.php/%EC%95%84%EA%B3%A0%EB%9D%BC/hosts/%ED%85%8C%EC%8A%A4%ED%8A%B8?action=hosts",
     "2": "http://dev.media.daum.net/wiki/index.php/%EC%95%84%EA%B3%A0%EB%9D%BC/hosts/RC?action=hosts",
     "3": "http://dev.media.daum.net/wiki/index.php/%EC%95%84%EA%B3%A0%EB%9D%BC/hosts/%EC%8B%A4%EC%84%9C%EB%B9%84%EC%8A%A4?action=hosts",
-    "4": "http://dev.media.daum.net/wiki/index.php/%EC%95%84%EA%B3%A0%EB%9D%BC/hosts/%EB%A1%9C%EC%BB%AC?action=hosts"
+    "4": "http://dev.media.daum.net/wiki/index.php/%EC%95%84%EA%B3%A0%EB%9D%BC/hosts/%EB%A1%9C%EC%BB%AC?action=hosts",
+    "5": "http://dev.media.daum.net/wiki/index.php/%EC%95%84%EA%B3%A0%EB%9D%BC/hosts/%EB%B2%A0%ED%83%80?action=hosts"
 }[m]
 
 webcont = read(url)
